@@ -1,0 +1,10 @@
+# config/schema/commerce_payment_cetelem.schema.yml
+commerce_payment.commerce_payment_gateway.plugin.RedirectCheckout:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    CodCentro:
+      type: string
+      label: 'CodCentro'
+    Modalidad:
+      type: string
+      label: 'Modalidad'

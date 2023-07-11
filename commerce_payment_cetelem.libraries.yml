@@ -1,0 +1,10 @@
+commerce_payment_cetelem:
+  version: 1.x
+
+  js:
+    js/cetelemjs.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
+

@@ -1,0 +1,70 @@
+<?php
+
+function commerce_payment_cetelem_theme($existing, $type, $theme, $path) {
+  return [
+    'block--commerce-payment-cetelem' => [
+      'variables' => [
+        'form' => [],
+      ],
+    ],
+  ];
+}
+
+/**
+ * @param $variables
+ * @param $codcentro
+ */
+function commerce_payment_cetelem_preprocess_page(&$variables) {
+  $total = '';
+  $product = '';
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $requestUri = $request->getRequestUri();
+  $midle_url = (substr($requestUri, -18));
+  $endurl = (substr($requestUri, -7));
+
+  if (!is_null(\Drupal::routeMatch()->getParameter('commerce_product'))) {
+    $parameter = \Drupal::routeMatch()->getParameter('commerce_product');
+    $id = \Drupal\commerce_product\Entity\Product::load((int) $parameter->id())
+      ->getVariationIds()[0];
+    $product = \Drupal::entityTypeManager()
+      ->getStorage('commerce_product_variation')
+      ->load($id)
+      ->get('price')
+      ->getValue()[0]["number"];
+    $iva = 0;
+    $productiva = $product * $iva;
+    $total = $product + $productiva;
+    $total = number_format($total, 4);
+  }
+  if (!is_null(\Drupal::routeMatch()->getParameter('commerce_order')) && ($midle_url == '/order_information' || $endurl == '/review')) {
+    $total = '';
+    $user_id = \Drupal::currentUser()->id();
+    $orders = \Drupal::routeMatch()->getParameter('commerce_order');
+    $total = $orders->getTotalPrice()->getNumber();
+  }
+
+  if (is_null($total) or empty($total) or !isset($total)) {
+    $total = '0.00';
+  }
+// Obtén la entidad de configuración del plugin
+  $paymentGateway = Drupal\commerce_payment\Entity\PaymentGateway::load('cetelem_payment');
+  if(!is_null($paymentGateway)) {
+    $configuration = $paymentGateway->getPluginConfiguration();
+
+// Accede a las variables de configuración
+    $displayLabel = $configuration['display_label'];
+    $mode = $configuration['mode'];
+    $paymentMethodTypes = $configuration['payment_method_types'];
+    $collectBillingInformation = $configuration['collect_billing_information'];
+    $codCentro = $configuration['CodCentro'];
+    $modalidad = $configuration['Modalidad'];
+
+    $codcentro = "MITORTUGA.ES";
+    $datos = [
+      'total' => $total,
+      'codcentro' => $codcentro,
+    ];
+    $variables['#attached']['library'][] = 'commerce_payment_cetelem/cetelemjs-js';
+    $variables['#attached']['drupalSettings']['commerce_payment_cetelem']['total'] = $datos;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "drupal/commerce_payment_cetelem",
+  "type": "drupal-module",
+  "description": "Provides Commerce integration for cetelem.com",
+  "homepage": "http://drupal.org/project/commerce_payment_cetelem",
+  "license": "GPL-2.0+",
+  "keywords": ["Drupal"],
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/commerce_payment_cetelem",
+    "source": "http://cgit.drupalcode.org/commerce_payment_cetelem"
+  },
+  "require": {
+    "drupal/commerce": "~2.0"
+  }
+}

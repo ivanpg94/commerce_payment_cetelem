@@ -1,0 +1,6 @@
+services:
+  commerce_payment_cetelem.price_resolver:
+    class: Drupal\commerce_payment_cetelem\Resolver\PriceResolver
+    arguments: ['@database']
+    tags:
+      - { name: commerce_price.price_resolver, priority: 200 }

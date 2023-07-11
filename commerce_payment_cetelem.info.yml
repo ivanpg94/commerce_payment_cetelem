@@ -1,0 +1,14 @@
+name: 'Commerce Cetelem Payment'
+type: module
+description: 'Provides a payment method using Cetelem platform.'
+package: 'Commerce - Payment'
+core: 8.x
+version: VERSION
+core_version_requirement: ^8 || ^9
+
+libraries:
+  - commerce_payment_cetelem/commerce_payment_cetelem
+
+Dependencies:
+  - drupal:commerce
+  - drupal:commerce_payment

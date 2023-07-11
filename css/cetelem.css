@@ -1,0 +1,47 @@
+/*** CALCULADORA CETELEM ***/
+.calculadoraCetelemWrapper {
+  border: 1px solid #b3b3b3;
+}
+* {
+    margin: 0 10px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+.calculadoraCetelemWrapper .logo-cetelem {
+  max-width: 150px;
+}
+#eCalculadoraCetelemDiv {
+  max-width: 100%;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem {
+  text-align: center;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem .linea1Ctl select {
+  background: none !important;
+  width: auto !important;
+  font-size: inherit !important;
+  margin: 0 3px;
+  padding-right: 0 !important;
+  border-width: 1px !important;
+  -webkit-appearance: menulist !important;
+  -moz-appearance: menulist !important;
+  appearance: menulist !important;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem.segundoElemento {
+  text-align: center !important;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem .linea4Ctl {
+  display: inline-block;
+  float: none !important;
+  width: auto !important;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem .botMasInfoCtl {
+  display: inline-block;
+  float: none !important;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem .botMasInfoCtl:hover {
+  text-decoration: underline !important;
+}
+#eCalculadoraCetelemDiv .eCalculadoraCetelem .negrita {
+  color: #333;
+}
